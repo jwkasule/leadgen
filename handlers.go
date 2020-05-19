@@ -18,21 +18,28 @@ func GetResultHandler(filename, query, location, radius, key string) {
 	// location checks
 	locationsplit := strings.Split(location, ",")
 	if len(locationsplit) != 2 {
-		log.Fatalln("Bad location format, please enter a string in format \"lon,lat\" as floats including quotations")
+		PrintHelp()
+		log.Fatalln("Bad location format, please enter a string in format \"lat,long\" as floats including quotations")
 	}
 	lat, err := strconv.ParseFloat(strings.TrimSpace(locationsplit[0]), 10)
 	if err != nil {
-		log.Fatalln("Latitude doesn't parse, please enter a float")
+		PrintHelp()
+		log.Fatalln("Latitude doesn't parse, please enter latitude as a float")
 	}
 	long, err := strconv.ParseFloat(strings.TrimSpace(locationsplit[1]), 10)
 	if err != nil {
-		log.Fatalln("Latitude doesn't parse, please enter a float")
+		PrintHelp()
+		log.Fatalln("Longitude doesn't parse, please enter a longitude as a float")
 	}
 	// radius check
 	radiusInt, err := strconv.Atoi(radius)
 	if err != nil {
 		PrintHelp()
 		log.Fatalln("Radius is not an integer, please enter an integer...")
+	}
+	if radiusInt > 50000 {
+		PrintHelp()
+		log.Fatalln("Radius is over 50000, please enter a radius under 50000 meters/50km")
 	}
 	// Yeah, this takes the uint type specifically. Why? uint itself can't
 	// even be shit out with strconv.ParseUInt (Just uint8-64), and the

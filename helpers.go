@@ -25,6 +25,7 @@ coordinates of lat,long and radius is an integer measuring meters from
 the location point to search from (No more than 50000 metres/50km allowed).
 
 Resulting CSV file will be in data/[filename].csv
+
 `
 
 // PrintHelp prints the default help message
