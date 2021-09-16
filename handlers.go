@@ -21,12 +21,12 @@ func GetResultHandler(filename, query, location, radius, key string) {
 		PrintHelp()
 		log.Fatalln("Bad location format, please enter a string in format \"lat,long\" as floats including quotations")
 	}
-	lat, err := strconv.ParseFloat(strings.TrimSpace(locationsplit[0]), 10)
+	lat, err := strconv.ParseFloat(strings.TrimSpace(locationsplit[0]), 64)
 	if err != nil {
 		PrintHelp()
 		log.Fatalln("Latitude doesn't parse, please enter latitude as a float")
 	}
-	long, err := strconv.ParseFloat(strings.TrimSpace(locationsplit[1]), 10)
+	long, err := strconv.ParseFloat(strings.TrimSpace(locationsplit[1]), 64)
 	if err != nil {
 		PrintHelp()
 		log.Fatalln("Longitude doesn't parse, please enter a longitude as a float")
